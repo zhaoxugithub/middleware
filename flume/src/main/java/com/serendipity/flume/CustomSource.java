@@ -29,6 +29,7 @@ public class CustomSource extends AbstractSource implements Configurable, Pollab
         }
         return Status.READY;
     }
+
     @Override
     public long getBackOffSleepIncrement() {
         return 0;

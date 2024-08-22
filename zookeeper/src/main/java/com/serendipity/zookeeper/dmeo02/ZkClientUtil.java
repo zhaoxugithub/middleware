@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-
 /**
  * 原始API
  */
@@ -22,7 +21,7 @@ public class ZkClientUtil {
     static {
         try {
             zk = new ZooKeeper(zkPath, 1000, new Watcher() {
-                //监控所有被触发的条件
+                // 监控所有被触发的条件
                 @Override
                 public void process(WatchedEvent event) {
                     logger.info("已经触发了{} 事件", event.getType());
@@ -37,7 +36,7 @@ public class ZkClientUtil {
     public ZooKeeper getZkConnection() {
         try {
             if (zk == null) {
-                //如果zk还没有创建，客户端请求连接就会被阻塞
+                // 如果zk还没有创建，客户端请求连接就会被阻塞
                 connectedSemaphore.await();
             }
             return zk;
@@ -137,7 +136,7 @@ public class ZkClientUtil {
         getZkConnection().getChildren("/", event -> {
             System.out.println("我是监听事件，监听子节点变化");
         }, (rc, path, ctx, children) -> {
-            //异步回调
+            // 异步回调
             System.out.println("children:" + children);
             countDownLatch.countDown();
         }, "context");

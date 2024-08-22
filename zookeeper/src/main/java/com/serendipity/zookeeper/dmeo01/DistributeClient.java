@@ -22,16 +22,13 @@ public class DistributeClient {
     // 创建到zk的客户端连接
     public void connection() throws IOException {
 
-        zkClient = new ZooKeeper(connections, sessionTimeOut, new Watcher() {
-            @Override
-            public void process(WatchedEvent watchedEvent) {
-                try {
-                    getServersList();
-                } catch (KeeperException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        zkClient = new ZooKeeper(connections, sessionTimeOut, watchedEvent -> {
+            try {
+                getServersList();
+            } catch (KeeperException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -48,7 +45,7 @@ public class DistributeClient {
         System.out.println(serverList);
     }
 
-    //处理业务
+    // 处理业务
     public void doBusiness(String hostname) throws InterruptedException {
         System.out.println(hostname + " is working ...");
 

@@ -21,18 +21,21 @@ public class CustomConsumer03 {
             for (ConsumerRecord<String, String> record : records) {
                 System.out.println(record.toString());
             }
-            //同步提交，当前线程会阻塞直到offset提交成功
+            // main 线程
+            System.out.println(Thread.currentThread().getName());
             consumer.commitAsync(new OffsetCommitCallback() {
-                @Override
-                public void onComplete(Map<TopicPartition, OffsetAndMetadata> map, Exception e) {
-
-                    if (e != null) {
-                        System.out.println("this consumer commit fail");
-                    } else {
-                        System.out.println(map.toString());
-                    }
-                }
-            });
+                                     @Override
+                                     public void onComplete(Map<TopicPartition, OffsetAndMetadata> map, Exception e) {
+                                         if (e != null) {
+                                             System.out.println("this consumer commit fail");
+                                         } else {
+                                             System.out.println(map.toString());
+                                         }
+                                     }
+                                 }
+                               // 1 2 3
+                    //todo other things
+            );
         }
     }
 }

@@ -7,6 +7,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Properties;
+import java.util.concurrent.TimeoutException;
 
 /**
  * 带回调函数的API
@@ -21,17 +22,21 @@ public class CustomProducer02 {
         KafkaProducer producer = new KafkaProducer(properties);
 
         for (int i = 0; i < 10; i++) {
+            producer.send(new ProducerRecord("first", "kafka--value--" + i), (recordMetadata, e) -> {
+                //表明消息发送成功
+                if (e == null) {
+                    System.out.println("this message send success" + recordMetadata.topic() + recordMetadata.offset());
+                } else {
+                    if (e instanceof TimeoutException) {
 
-            producer.send(new ProducerRecord("first", "kafka--value--" + i), new Callback() {
-                @Override
-                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                    //表明消息发送成功
-                    if (e == null) {
-                        System.out.println("this message send success" + recordMetadata.topic() + recordMetadata.offset());
-                    } else {
-                        //消息发送失败
-                        e.printStackTrace();
+                        // todo
+                    } else if (e instanceof NullPointerException) {
+                        // todo
+                    }else {
+                       // todo
                     }
+                    //消息发送失败
+                    e.printStackTrace();
                 }
             });
         }

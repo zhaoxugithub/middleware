@@ -75,6 +75,4 @@ public class KafkaTopicDML {
         KafkaTopicDML kafkaTopicDML = new KafkaTopicDML();
         kafkaTopicDML.createTopic();
     }
-
-
 }
