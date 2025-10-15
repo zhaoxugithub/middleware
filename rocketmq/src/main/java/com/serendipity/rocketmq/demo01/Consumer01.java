@@ -14,7 +14,7 @@ public class Consumer01 {
             // 创建一个DefaultMQPushConsumer实例
             DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer_group");
             // 设置NameServer地址
-            consumer.setNamesrvAddr("localhost:9876");
+            consumer.setNamesrvAddr("150.158.27.19:9876");
             // 设置消费开始位置
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
             // 订阅主题和标签

@@ -10,13 +10,15 @@ public class Producer01 {
             // 创建一个DefaultMQProducer实例
             DefaultMQProducer producer = new DefaultMQProducer("producer_group");
             // 设置NameServer地址
-            producer.setNamesrvAddr("localhost:9876");
+            producer.setNamesrvAddr("150.158.27.19:9876");
             // 启动Producer实例
             producer.start();
-            // 创建消息对象
-            Message message = new Message("topic01", "tag", "Hello, RocketMQ!".getBytes());
-            // 发送消息
-            producer.send(message);
+            for (int i = 0; i < 10000; i++) {
+                // 创建消息对象
+                Message message = new Message("topic01", "tag", "Hello, RocketMQ!".getBytes());
+                // 发送消息
+                producer.send(message);
+            }
             // 关闭Producer实例
             producer.shutdown();
         } catch (Exception e) {

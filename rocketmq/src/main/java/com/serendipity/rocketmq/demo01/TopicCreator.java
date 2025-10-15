@@ -7,23 +7,20 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 import org.apache.rocketmq.tools.admin.DefaultMQAdminExt;
 
 public class TopicCreator {
+
     public static void main(String[] args) {
         DefaultMQAdminExt admin = new DefaultMQAdminExt();
-        admin.setNamesrvAddr("localhost:9876");
-
+        admin.setNamesrvAddr("150.158.27.19:9876");
         try {
             admin.start();
-
             // 配置主题参数
             TopicConfig topicConfig = new TopicConfig();
             topicConfig.setTopicName("topic01");
             topicConfig.setReadQueueNums(8);  // 读队列数量
             topicConfig.setWriteQueueNums(8); // 写队列数量
             topicConfig.setPerm(6);           // 权限:2-写,4-读,6-读写
-
             // 创建主题
-            admin.createAndUpdateTopicConfig("localhost:10911", topicConfig);
-
+            admin.createAndUpdateTopicConfig("150.158.27.19:10911", topicConfig);
             System.out.println("主题创建成功");
         } catch (MQClientException | RemotingException | MQBrokerException | InterruptedException e) {
             e.printStackTrace();
