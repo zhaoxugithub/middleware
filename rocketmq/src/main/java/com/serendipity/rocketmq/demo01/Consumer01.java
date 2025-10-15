@@ -1,5 +1,6 @@
 package com.serendipity.rocketmq.demo01;
 
+import com.serendipity.rocketmq.Constant;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
@@ -14,7 +15,7 @@ public class Consumer01 {
             // 创建一个DefaultMQPushConsumer实例
             DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer_group");
             // 设置NameServer地址
-            consumer.setNamesrvAddr("150.158.27.19:9876");
+            consumer.setNamesrvAddr(Constant.NAME_SERVER);
             // 设置消费开始位置
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
             // 订阅主题和标签

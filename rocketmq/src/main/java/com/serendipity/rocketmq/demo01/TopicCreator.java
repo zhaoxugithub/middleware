@@ -1,5 +1,6 @@
 package com.serendipity.rocketmq.demo01;
 
+import com.serendipity.rocketmq.Constant;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.TopicConfig;
@@ -10,7 +11,7 @@ public class TopicCreator {
 
     public static void main(String[] args) {
         DefaultMQAdminExt admin = new DefaultMQAdminExt();
-        admin.setNamesrvAddr("150.158.27.19:9876");
+        admin.setNamesrvAddr(Constant.NAME_SERVER);
         try {
             admin.start();
             // 配置主题参数
