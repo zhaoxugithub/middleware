@@ -10,12 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>zookeeper</module>
-        <module>mapreduce</module>
         <module>kafka</module>
         <module>redis</module>
-        <module>hbase</module>
         <module>flume</module>
-        <module>hdfs</module>
     </modules>
 
     <dependencies>

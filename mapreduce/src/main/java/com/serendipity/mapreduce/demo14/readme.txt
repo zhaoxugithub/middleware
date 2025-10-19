@@ -1,1 +1,0 @@
-mapreduce 输出数据到hdfs
